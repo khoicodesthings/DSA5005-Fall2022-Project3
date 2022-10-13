@@ -21,7 +21,17 @@ public:
 	DFrow(); // default constructor
 	DFrow(string n, char c, int one, int two, int three, string ci); // non-default constructor
 		// TODO: write getters for each of the fields
+	string getName();
+	char getSex();
+	int getAge();
+	int getWeight();
+	string getCity();
 		// TODO: write setters for each of the fields
+	void setName(string newName);
+	void setSex(char newSex);
+	void setHeight(int newHeight);
+	void setWeight(int newWeight);
+	void setCity(string newCity);
 		// TODO: write display method to display all the fields in the same order
 		//  refer to output sample for exact format
 		// TODO: write destructor

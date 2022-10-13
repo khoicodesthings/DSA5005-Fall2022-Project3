@@ -17,10 +17,5 @@ Q Sex
 X Age
 I Age
 
-C 2 Name Sex
-C 3 Age Height(in) Weight(lbs)
-
 R 5 10
-R 12 13
-
-S 2 Name Sex 5 8
+R 12 15

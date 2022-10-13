@@ -1,6 +1,8 @@
 // DSA 5005 - Computing Structures
 // Fall 2022
 // Project 3
+// Khoi Trinh
+
 #include <iostream>
 #include <string>  // for the string fields
 #include <vector>  // to store data
@@ -34,7 +36,9 @@ public:
 	void setCity(string newCity);
 		// TODO: write display method to display all the fields in the same order
 		//  refer to output sample for exact format
+	void display();
 		// TODO: write destructor
+	~DFrow();
 };
 // class to store the entire dataframe
 class DataFrame

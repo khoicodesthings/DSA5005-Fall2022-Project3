@@ -63,18 +63,18 @@ public:
 	void setColName(int col, char* name); // change the name of a header/column
 	// Getters
 	int getNumberRows();                                              // returns the number of rows
-		int getNumberCols();                                              // returns the number of columns
-		DataFrame* getColumns(int* columns, int cLen);                    // returns a dataframe with a set of cLen number of columns
-		DataFrame* getRows(int* rows, int rLen);                          // returns a data frame with a set of rLen number of rows
-		DataFrame* getRowsCols(int* rows, int rLen, int* cols, int cLen); // returns a data frame given a set of row numbersand column numbers
-		string getHeader(int i);                                          // returns the header name given a index position
-		// Find info of a given column
-		double findAverage(int colNumber); // returns the average of the given column
+	int getNumberCols();                                              // returns the number of columns
+	//DataFrame* getColumns(int* columns, int cLen);                    // returns a dataframe with a set of cLen number of columns
+	DataFrame* getRows(int* rows, int rLen);                          // returns a data frame with a set of rLen number of rows
+	//DataFrame* getRowsCols(int* rows, int rLen, int* cols, int cLen); // returns a data frame given a set of row numbersand column numbers
+	string getHeader(int i);                                          // returns the header name given a index position
+	// Find info of a given column
+	double findAverage(int colNumber); // returns the average of the given column
 	double findMax(int colNumber);     // returns the max of the given column
 	double findMin(int colNumber);     // returns the min of the given column
 	double frequency(int colNumber);   // displays the frequency of the unique values
-		// Destructor
-		~DataFrame();
+	// Destructor
+	~DataFrame();
 };
 // main function
 int main()

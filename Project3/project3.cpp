@@ -32,6 +32,7 @@ public:
 		// TODO: write setters for each of the fields
 	void setName(string newName);
 	void setSex(char newSex);
+	void setAge(int newAge);
 	void setHeight(int newHeight);
 	void setWeight(int newWeight);
 	void setCity(string newCity);
@@ -86,6 +87,32 @@ int DFrow::getHeight() {
 
 string DFrow::getCity() {
 	return city;
+}
+
+// setters
+
+void DFrow::setName(string newName) {
+	name = newName;
+}
+
+void DFrow::setSex(char newSex) {
+	sex = newSex;
+}
+
+void DFrow::setAge(int newAge) {
+	age = newAge;
+}
+
+void DFrow::setWeight(int newWeight) {
+	weight = newWeight;
+}
+
+void DFrow::setHeight(int newHeight) {
+	height = newHeight;
+}
+
+void DFrow::setCity(string newCity) {
+	city = newCity;
 }
 // class to store the entire dataframe
 class DataFrame

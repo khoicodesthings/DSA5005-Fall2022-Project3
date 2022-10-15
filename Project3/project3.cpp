@@ -40,6 +40,26 @@ public:
 		// TODO: write destructor
 	~DFrow();
 };
+
+// default constructor
+DFrow:: DFrow() {
+	name = "";
+	sex = NULL;
+	age = 0;
+	height = 0;
+	weight = 0;
+	city = "";
+}
+
+// non-default constructor
+DFrow::DFrow(string n, char c, int one, int two, int three, string ci) {
+	name = n;
+	sex = c;
+	age = one;
+	height = two;
+	weight = three;
+	city = ci;
+}
 // class to store the entire dataframe
 class DataFrame
 {

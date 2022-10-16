@@ -176,5 +176,15 @@ int main()
 	//DataFrame* d = new DataFrame(numRows, numCols);
 	//d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
 	//	// TODO: read the commands from the input file (redirected input)
-	//	return 0;
+	DFrow* test = new DFrow();
+	test->setName("Khoi");
+	test->setAge(27);
+	test->setSex('M');
+	test->setHeight(67);
+	test->setWeight(175);
+	test->setCity("Norman");
+
+	test->display();
+
+	return 0;
 }

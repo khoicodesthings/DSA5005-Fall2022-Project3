@@ -165,6 +165,27 @@ public:
 	// Destructor
 	~DataFrame();
 };
+
+// Constructors
+DataFrame::DataFrame() {
+	//data = NULL;
+	//headers = NULL;
+	nRows = 1;
+	nCols = 1;
+
+}
+
+DataFrame::DataFrame(int rows, int cols) {
+	nRows = rows;
+	nCols = cols;
+}
+
+// Overloaded [] operator
+DFrow DataFrame::operator[](int i) {
+	return data[i];
+}
+
+
 // main function
 int main()
 {

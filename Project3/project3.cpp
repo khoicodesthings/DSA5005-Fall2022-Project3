@@ -114,6 +114,21 @@ void DFrow::setHeight(int newHeight) {
 void DFrow::setCity(string newCity) {
 	city = newCity;
 }
+
+// display operator
+void DFrow::display() {
+	cout << getName() << " " << getSex() << " " << getAge() << " " << getHeight() << " " << getWeight() << " " << getCity() << endl;
+}
+
+// destructor
+DFrow::~DFrow() {
+	name = "";
+	sex = NULL;
+	age = 0;
+	height = 0;
+	weight = 0;
+	city = "";
+}
 // class to store the entire dataframe
 class DataFrame
 {

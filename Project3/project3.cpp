@@ -200,10 +200,15 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 		// Code to add content of csv file to the 2 vectors
 		if (headerpresence == "true") {
 			string headerline;
-			while (headers.size() < nCols) {
-				getline(myFile, headerline);
-				headers.push_back(headerline);
-			}
+			getline(myFile, headerline);
+			headers.push_back(headerline);
+		}
+		// DFrow::DFrow(string n, char c, int one, int two, int three, string ci)
+		// Code to read in the rest of the line and create DFrow objects
+		// These DFrow objects will be stored in the data vector
+		string nextline;
+		while (getline(myFile, nextline)) {
+			cout << nextline << endl;
 		}
 		myFile.close();
 	}

@@ -196,7 +196,13 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 	// open the csv file, ios::in means open in read mode
 	myFile.open(filename, ios::in);
 	if (myFile.is_open()) { // start adding to data vector if file is opened successfully
-		cout << "File opened success!" << endl;
+		// cout << "File opened success!" << endl;
+		// Code to add content of csv file to the 2 vectors
+		getline(myFile, headerpresence);
+		headers.push_back(headerpresence);
+		for (string i : headers) {
+			cout << i;
+		}
 		myFile.close();
 	}
 	else {
@@ -231,7 +237,7 @@ int main()
 	DataFrame* d = new DataFrame(numRows, numCols);
 	d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
 	//	// TODO: read the commands from the input file (redirected input)
-	DFrow* test = new DFrow();
+	/*DFrow* test = new DFrow();
 	test->setName("Khoi");
 	test->setAge(27);
 	test->setSex('M');
@@ -239,7 +245,7 @@ int main()
 	test->setWeight(175);
 	test->setCity("Norman");
 
-	test->display();
+	test->display();*/
 
 	return 0;
 }

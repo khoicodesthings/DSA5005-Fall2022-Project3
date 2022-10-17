@@ -186,10 +186,6 @@ DFrow DataFrame::operator[](int i) {
 }
 
 // File reader
-// Store the CSV file as a vector of DFrow objects
-// in the data vector<DFrow>
-// if headerpresence is true then store header
-// in the headers vectore<string>
 void DataFrame::readCSV(string filename, string headerpresence) {
 	// create the file object
 	fstream myFile;
@@ -199,16 +195,54 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 		// cout << "File opened success!" << endl;
 		// Code to add content of csv file to the 2 vectors
 		if (headerpresence == "true") {
-			string headerline;
-			getline(myFile, headerline);
-			headers.push_back(headerline);
+			string headerline1, headerline2, headerline3, headerline4, headerline5, headerline6;
+			getline(myFile, headerline1, ',');
+			headers.push_back(headerline1);
+			getline(myFile, headerline2, ',');
+			headers.push_back(headerline2);
+			getline(myFile, headerline3, ',');
+			headers.push_back(headerline3);
+			getline(myFile, headerline4, ',');
+			headers.push_back(headerline4);
+			getline(myFile, headerline5, ',');
+			headers.push_back(headerline5);
+			getline(myFile, headerline6);
+			headers.push_back(headerline6);
 		}
-		// DFrow::DFrow(string n, char c, int one, int two, int three, string ci)
-		// Code to read in the rest of the line and create DFrow objects
-		// These DFrow objects will be stored in the data vector
-		string nextline;
-		while (getline(myFile, nextline)) {
-			cout << nextline << endl;
+		string name;
+		char sex; // index [0] of string will give the char
+		int age; // use stoi function to convert string to int
+		int height;
+		int weight;
+		string city;
+		string nextline1;
+		while (getline(myFile, nextline1, ',')) {
+			string nextline2, nextline3, nextline4, nextline5, nextline6;
+
+			getline(myFile, nextline2, ',');
+			getline(myFile, nextline3, ',');
+			getline(myFile, nextline4, ',');
+			getline(myFile, nextline5, ',');
+			getline(myFile, nextline6);
+
+			name = nextline1;
+			sex = nextline2[0];
+			age = stoi(nextline3);
+			height = stoi(nextline4);
+			weight = stoi(nextline5);
+			city = nextline6;
+
+			DFrow* thisrow = new DFrow();
+			thisrow->setName(name);
+			thisrow->setSex(sex);
+			thisrow->setAge(age);
+			thisrow->setHeight(height);
+			thisrow->setWeight(weight);
+			thisrow->setCity(city);
+			thisrow->display();
+			//data.push_back(thisrow);
+			
+
 		}
 		myFile.close();
 	}

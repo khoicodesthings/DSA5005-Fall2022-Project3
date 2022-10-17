@@ -198,9 +198,14 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 	if (myFile.is_open()) { // start adding to data vector if file is opened successfully
 		// cout << "File opened success!" << endl;
 		// Code to add content of csv file to the 2 vectors
-		getline(myFile, headerpresence);
-		headers.push_back(headerpresence);
-		for (string i : headers) {
+		if (headerpresence == "true") {
+			string headerline;
+			while (headers.size() < nCols - 1) {
+				getline(myFile, headerline, ',');
+				headers.push_back(headerline);
+			}
+		}
+		for (string i: headers) {
 			cout << i;
 		}
 		myFile.close();

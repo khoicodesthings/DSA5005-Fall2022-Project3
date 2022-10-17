@@ -276,12 +276,12 @@ int DataFrame::getNumberRows() {
 
 // search record method
 DFrow DataFrame::searchRecord(string name) {
-	for (DFrow i : data) {
-		string findthis = i.getName();
+	for (int i = 0; i < nRows; i++) {
+		string findthis = data[i].getName();
 		if (findthis == name) {
 			cout << "Record found:" << endl;
-			i.display();
-			return i;
+			data[i].display();
+			return data[i];
 		}
 	}
 }
@@ -290,6 +290,11 @@ DFrow DataFrame::searchRecord(string name) {
 void DataFrame::setColName(int col, char* name) {
 	string changetothis = name;
 	headers[col] = changetothis;
+}
+
+// get rows method
+DataFrame* DataFrame::getRows(int* rows, int rLen) {
+	return NULL;
 }
 
 

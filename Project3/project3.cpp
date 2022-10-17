@@ -168,8 +168,8 @@ public:
 
 // Constructors
 DataFrame::DataFrame() {
-	//data = NULL;
-	//headers = NULL;
+	data.reserve(100);
+	headers.reserve(100);
 	nRows = 1;
 	nCols = 1;
 
@@ -178,6 +178,8 @@ DataFrame::DataFrame() {
 DataFrame::DataFrame(int rows, int cols) {
 	nRows = rows;
 	nCols = cols;
+	data.reserve(nRows);
+	headers.reserve(nCols);
 }
 
 // Overloaded [] operator
@@ -239,8 +241,8 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 			thisrow->setHeight(height);
 			thisrow->setWeight(weight);
 			thisrow->setCity(city);
-			thisrow->display();
-			//data.push_back(thisrow);
+			//thisrow->display();
+			data.push_back(*thisrow);
 			
 
 		}
@@ -254,7 +256,13 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 
 // display
 void DataFrame::display() {
-
+	for (string i : headers) {
+		cout << " " << i << " ";
+	}
+	cout << endl;
+	for (DFrow i : data) {
+		i.display();
+	}
 }
 
 // getters
@@ -277,6 +285,7 @@ int main()
 	cin >> numRows >> numCols >> headerBool >> fileName;
 	DataFrame* d = new DataFrame(numRows, numCols);
 	d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
+	d->display();
 	//	// TODO: read the commands from the input file (redirected input)
 	/*DFrow* test = new DFrow();
 	test->setName("Khoi");

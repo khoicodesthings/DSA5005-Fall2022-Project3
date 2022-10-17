@@ -185,6 +185,26 @@ DFrow DataFrame::operator[](int i) {
 	return data[i];
 }
 
+// File reader
+void DataFrame::readCSV(string filename, string headerpresence) {
+	fstream myFile;
+	myFile.open(filename, ios::in);
+}
+
+// display
+void DataFrame::display() {
+
+}
+
+// getters
+int DataFrame::getNumberCols() {
+	return nCols;
+}
+
+int DataFrame::getNumberRows() {
+	return nRows;
+}
+
 
 // main function
 int main()

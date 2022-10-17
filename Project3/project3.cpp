@@ -200,13 +200,10 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 		// Code to add content of csv file to the 2 vectors
 		if (headerpresence == "true") {
 			string headerline;
-			while (headers.size() < nCols - 1) {
-				getline(myFile, headerline, ',');
+			while (headers.size() < nCols) {
+				getline(myFile, headerline);
 				headers.push_back(headerline);
 			}
-		}
-		for (string i: headers) {
-			cout << i;
 		}
 		myFile.close();
 	}

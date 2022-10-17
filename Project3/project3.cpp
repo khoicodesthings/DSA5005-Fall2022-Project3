@@ -186,9 +186,23 @@ DFrow DataFrame::operator[](int i) {
 }
 
 // File reader
+// Store the CSV file as a vector of DFrow objects
+// in the data vector<DFrow>
+// if headerpresence is true then store header
+// in the headers vectore<string>
 void DataFrame::readCSV(string filename, string headerpresence) {
+	// create the file object
 	fstream myFile;
+	// open the csv file, ios::in means open in read mode
 	myFile.open(filename, ios::in);
+	if (myFile.is_open()) { // start adding to data vector if file is opened successfully
+		cout << "File opened success!" << endl;
+		myFile.close();
+	}
+	else {
+		cout << "Could not open file!" << endl;
+	}
+
 }
 
 // display
@@ -214,8 +228,8 @@ int main()
 	string headerBool;
 	//char command;
 	cin >> numRows >> numCols >> headerBool >> fileName;
-	//DataFrame* d = new DataFrame(numRows, numCols);
-	//d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
+	DataFrame* d = new DataFrame(numRows, numCols);
+	d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
 	//	// TODO: read the commands from the input file (redirected input)
 	DFrow* test = new DFrow();
 	test->setName("Khoi");

@@ -286,6 +286,12 @@ DFrow DataFrame::searchRecord(string name) {
 	}
 }
 
+// change col name method
+void DataFrame::setColName(int col, char* name) {
+	string changetothis = name;
+	headers[col] = changetothis;
+}
+
 
 // main function
 int main()

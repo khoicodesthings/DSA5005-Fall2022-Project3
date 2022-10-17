@@ -209,11 +209,11 @@ int DataFrame::getNumberRows() {
 // main function
 int main()
 {
-	//int numRows, numCols;
-	//string fileName;
-	//string headerBool;
+	int numRows, numCols;
+	string fileName;
+	string headerBool;
 	//char command;
-	//cin >> numRows >> numCols >> headerBool >> fileName;
+	cin >> numRows >> numCols >> headerBool >> fileName;
 	//DataFrame* d = new DataFrame(numRows, numCols);
 	//d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
 	//	// TODO: read the commands from the input file (redirected input)

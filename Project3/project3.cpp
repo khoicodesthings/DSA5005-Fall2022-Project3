@@ -274,6 +274,18 @@ int DataFrame::getNumberRows() {
 	return nRows;
 }
 
+// search record method
+DFrow DataFrame::searchRecord(string name) {
+	for (DFrow i : data) {
+		string findthis = i.getName();
+		if (findthis == name) {
+			cout << "Record found:" << endl;
+			i.display();
+			return i;
+		}
+	}
+}
+
 
 // main function
 int main()
@@ -286,6 +298,7 @@ int main()
 	DataFrame* d = new DataFrame(numRows, numCols);
 	d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
 	d->display();
+	d->searchRecord("Alex");
 	//	// TODO: read the commands from the input file (redirected input)
 	/*DFrow* test = new DFrow();
 	test->setName("Khoi");

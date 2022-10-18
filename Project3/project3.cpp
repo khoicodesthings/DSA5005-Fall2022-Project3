@@ -303,6 +303,10 @@ DataFrame* DataFrame::getRows(int* rows, int rLen) {
 	return returnthis;
 }
 
+// getHeader returns the header name given a index position
+string DataFrame::getHeader(int i) {
+	return headers[i];
+} 
 
 
 

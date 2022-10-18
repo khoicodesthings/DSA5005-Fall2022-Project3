@@ -383,7 +383,43 @@ double DataFrame::findMax(int colNumber) {
 	
 }
 
-//double DataFrame::findMin(int colNumber);
+double DataFrame::findMin(int colNumber) {
+	int index = colNumber;
+	string name = headers[index];
+	double min = 1000;
+	if (name == "Name" || name == "Sex" || name == "City") {
+		cout << "Min for " << name << " cannot be found since it is nan";
+		return min;
+	}
+	else if (name == "Age") {
+		for (DFrow i : data) {
+			if (i.getAge() < min) {
+				min = i.getAge();
+			}
+		}
+		cout << "Min of Age is " << min << endl;
+		return min;
+	}
+	else if (name == "Height(in)") {
+		for (DFrow i : data) {
+			if (i.getHeight() < min) {
+				min = i.getHeight();
+			}
+		}
+		cout << "Min of Height(in) is " << min << endl;
+		return min;
+	}
+	else if (name == "Weight(lbs)") {
+		for (DFrow i : data) {
+			if (i.getWeight() < min) {
+				min = i.getWeight();
+			}
+		}
+		cout << "Min of Weight(lbs) is " << min << endl;
+		return min;
+	}
+
+}
 //double frequency(int colNumber);
 
 // main function
@@ -404,6 +440,9 @@ int main()
 	d->findMax(2);
 	d->findMax(3);
 	d->findMax(4);
+	d->findMin(2);
+	d->findMin(3);
+	d->findMin(4);
 	//	// TODO: read the commands from the input file (redirected input)
 	/*DFrow* test = new DFrow();
 	test->setName("Khoi");

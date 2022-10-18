@@ -290,6 +290,10 @@ DFrow DataFrame::searchRecord(string name) {
 			data[i].display();
 			return data[i];
 		}
+		else {
+			cout << "No such record exist!" << endl;
+			//return data[1];
+		}
 	}
 }
 
@@ -460,7 +464,8 @@ int main()
 	char command;
 	cin >> numRows >> numCols >> headerBool >> fileName;
 	string colName;
-	int colNum = 5;
+	string findthisname;
+	int colNum = 0;
 	DataFrame* d = new DataFrame(numRows, numCols);
 	d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
 	/*d->display();
@@ -489,9 +494,9 @@ int main()
 	while (!cin.eof()) {
 		switch (command) {
 			case 'F': {
-				string find;
-				cin >> find;
-				d->searchRecord(find);
+				//string find;
+				cin >> findthisname;
+				d->searchRecord(findthisname);
 			}
 			case 'D': {
 				d->display();

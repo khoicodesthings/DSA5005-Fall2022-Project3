@@ -464,6 +464,34 @@ double DataFrame::frequency(int colNumber) {
 		cout << "F: " << freqF << endl;
 		return freq;
 	}
+	if (name == "Name") {
+		int currentfreq;
+		for (int i = 0; i < nRows; i++) {
+			string current = data[i].getName();
+			currentfreq = 0;
+			for (DFrow j : data) {
+				if (j.getName() == current) {
+					currentfreq++;
+				}
+			}
+			cout << current << ": " << currentfreq << endl;
+		}
+		return freq;
+	}
+	if (name == "City") {
+		int currentfreq;
+		for (int i = 0; i < nRows; i++) {
+			string current = data[i].getCity();
+			currentfreq = 0;
+			for (DFrow j : data) {
+				if (j.getCity() == current) {
+					currentfreq++;
+				}
+			}
+			cout << current << ": " << currentfreq << endl;
+		}
+		return freq;
+	}
 
 }
 

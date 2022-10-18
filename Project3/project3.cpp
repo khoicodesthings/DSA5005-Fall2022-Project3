@@ -323,7 +323,7 @@ double DataFrame::findAverage(int colNumber) {
 			sum = sum + i.getAge();
 		}
 		average = sum / nRows;
-		cout << "Average for Age is " << average << endl;
+		cout << "Average of Age is " << average << endl;
 		return average;
 	}
 	else if (name == "Height(in)") {
@@ -331,7 +331,7 @@ double DataFrame::findAverage(int colNumber) {
 			sum = sum + i.getHeight();
 		}
 		average = sum / nRows;
-		cout << "Average for Height(in) is " << average << endl;
+		cout << "Average of Height(in) is " << average << endl;
 		return average;
 	}
 	else if (name == "Weight(lbs)") {
@@ -339,14 +339,51 @@ double DataFrame::findAverage(int colNumber) {
 			sum = sum + i.getWeight();
 		}
 		average = sum / nRows;
-		cout << "Average for Weight(lbs) is " << average << endl;
+		cout << "Average of Weight(lbs) is " << average << endl;
 		return average;
 	}
 
 }
 
-//double findMax(int colNumber);   
-//double findMin(int colNumber);
+double DataFrame::findMax(int colNumber) {
+	int index = colNumber;
+	string name = headers[index];
+	double max = 0;
+	if (name == "Name" || name == "Sex" || name == "City") {
+		cout << "Max for " << name << " cannot be found since it is nan";
+		return max;
+	}
+	else if (name == "Age") {
+		for (DFrow i : data) {
+			if (i.getAge() > max) {
+				max = i.getAge();
+			}
+		}
+		cout << "Max of Age is " << max << endl;
+		return max;
+	}
+	else if (name == "Height(in)") {
+		for (DFrow i : data) {
+			if (i.getHeight() > max) {
+				max = i.getHeight();
+			}
+		}
+		cout << "Max of Height(in) is " << max << endl;
+		return max;
+	}
+	else if (name == "Weight(lbs)") {
+		for (DFrow i : data) {
+			if (i.getWeight() > max) {
+				max = i.getWeight();
+			}
+		}
+		cout << "Max of Weight(lbs) is " << max << endl;
+		return max;
+	}
+	
+}
+
+//double DataFrame::findMin(int colNumber);
 //double frequency(int colNumber);
 
 // main function
@@ -362,6 +399,11 @@ int main()
 	d->display();
 	d->searchRecord("Alex");
 	d->findAverage(2);
+	d->findAverage(3);
+	d->findAverage(4);
+	d->findMax(2);
+	d->findMax(3);
+	d->findMax(4);
 	//	// TODO: read the commands from the input file (redirected input)
 	/*DFrow* test = new DFrow();
 	test->setName("Khoi");

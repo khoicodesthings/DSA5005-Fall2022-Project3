@@ -136,6 +136,7 @@ protected:
 	vector<DFrow> data; // field storeing all the data
 	vector<string> headers; // field to only the headers
 	int nRows, nCols; // store the number of rows and cols
+	bool isHeader;
 public:
 	// Constructors
 	DataFrame();
@@ -172,7 +173,7 @@ DataFrame::DataFrame() {
 	headers.reserve(100);
 	nRows = 1;
 	nCols = 1;
-
+	isHeader = false;
 }
 
 DataFrame::DataFrame(int rows, int cols) {
@@ -180,6 +181,7 @@ DataFrame::DataFrame(int rows, int cols) {
 	nCols = cols;
 	data.reserve(nRows);
 	headers.reserve(nCols);
+	isHeader = false;
 }
 
 // Overloaded [] operator
@@ -193,10 +195,13 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 	fstream myFile;
 	// open the csv file, ios::in means open in read mode
 	myFile.open(filename, ios::in);
+	if (headerpresence == "true") {
+		isHeader = true;
+	}
 	if (myFile.is_open()) { // start adding to data vector if file is opened successfully
 		// cout << "File opened success!" << endl;
 		// Code to add content of csv file to the 2 vectors
-		if (headerpresence == "true") {
+		if (isHeader = true) {
 			string headerline1, headerline2, headerline3, headerline4, headerline5, headerline6;
 			getline(myFile, headerline1, ',');
 			headers.push_back(headerline1);
@@ -256,10 +261,12 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 
 // display
 void DataFrame::display() {
-	for (string i : headers) {
-		cout << " " << i << " ";
+	if (isHeader == true) {
+		for (string i : headers) {
+			cout << " " << i << " ";
+		}
+		cout << endl;
 	}
-	cout << endl;
 	for (DFrow i : data) {
 		i.display();
 	}

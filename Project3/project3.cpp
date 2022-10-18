@@ -420,7 +420,29 @@ double DataFrame::findMin(int colNumber) {
 	}
 
 }
-//double frequency(int colNumber);
+
+// find frequency of unique values in a col
+double DataFrame::frequency(int colNumber) {
+	int index = colNumber;
+	string name = headers[index];
+	double freq = 0;
+	if (name == "Sex") {
+		int freqM = 0;
+		int freqF = 0;
+		for (DFrow i : data) {
+			if (i.getSex() == 'M') {
+				freqM++;
+			}
+			if (i.getSex() == 'F') {
+				freqF++;
+			}
+		}
+		cout << "M: " << freqM << endl;
+		cout << "F: " << freqF << endl;
+		return freq;
+	}
+
+}
 
 // main function
 int main()
@@ -443,6 +465,7 @@ int main()
 	d->findMin(2);
 	d->findMin(3);
 	d->findMin(4);
+	d->frequency(1);
 	//	// TODO: read the commands from the input file (redirected input)
 	/*DFrow* test = new DFrow();
 	test->setName("Khoi");

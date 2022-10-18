@@ -599,23 +599,23 @@ int main()
 					break;
 				}
 				else if (colName == "Sex") {
-					d->findMin(0);
+					d->findMin(1);
 					break;
 				}
 				else if (colName == "Age") {
-					d->findMin(0);
+					d->findMin(2);
 					break;
 				}
 				else if (colName == "Height(in)") {
-					d->findMin(0);
+					d->findMin(3);
 					break;
 				}
 				else if (colName == "Weight(lbs)") {
-					d->findMin(0);
+					d->findMin(4);
 					break;
 				}
 				else if (colName == "City") {
-					d->findMin(0);
+					d->findMin(5);
 					break;
 				}
 			}

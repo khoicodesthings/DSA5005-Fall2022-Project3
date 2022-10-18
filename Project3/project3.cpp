@@ -514,37 +514,13 @@ int main()
 	cin >> numRows >> numCols >> headerBool >> fileName;
 	string colName;
 	string findthisname;
-	//int colNum = 0;
 	DataFrame* d = new DataFrame(numRows, numCols);
 	d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
-	/*d->display();
-	d->searchRecord("Alex");
-	d->findAverage(2);
-	d->findAverage(3);
-	d->findAverage(4);
-	d->findMax(2);
-	d->findMax(3);
-	d->findMax(4);
-	d->findMin(2);
-	d->findMin(3);
-	d->findMin(4);
-	d->frequency(1);*/
-	//	// TODO: read the commands from the input file (redirected input)
-	/*DFrow* test = new DFrow();
-	test->setName("Khoi");
-	test->setAge(27);
-	test->setSex('M');
-	test->setHeight(67);
-	test->setWeight(175);
-	test->setCity("Norman");
-
-	test->display();*/
 	
 	cin >> command;
 	while (!cin.eof()) {
 		switch (command) {
 			case 'F': {
-				//string find;
 				cin >> findthisname;
 				d->searchRecord(findthisname);
 				break;
@@ -554,9 +530,7 @@ int main()
 				break;
 			}
 			case 'A': {
-				//string colName;
 				cin >> colName;
-				//int colNum = 20;
 				if (colName == "Name") {
 					d->findAverage(0);
 					break;
@@ -583,9 +557,7 @@ int main()
 				}
 			}
 			case 'Q': {
-				//string colName;
 				cin >> colName;
-				//int colNum = 20;
 				if (colName == "Name") {
 					d->frequency(0);
 					break;
@@ -613,9 +585,7 @@ int main()
 				
 			}
 			case 'X': {
-				//string colName;
 				cin >> colName;
-				//int colNum = 20;
 				if (colName == "Name") {
 					d->findMax(0);
 					break;
@@ -643,9 +613,7 @@ int main()
 				
 			}
 			case 'I': {
-				//string colName;
 				cin >> colName;
-				//int colNum = 20;
 				if (colName == "Name") {
 					d->findMin(0);
 					break;
@@ -674,7 +642,6 @@ int main()
 			case 'R': {
 				cin >> beginrow >> endrow;
 				int numrows = endrow - beginrow;
-				//cout << "Call getRows for case R here" << endl;
 				d->getRows(&numrows, numCols);
 				break;
 			}
@@ -682,6 +649,5 @@ int main()
 		}
 		cin >> command;
 	}
-
 	return 0;
 }

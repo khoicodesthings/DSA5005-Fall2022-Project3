@@ -8,6 +8,8 @@
 #include <vector>  // to store data
 #include <fstream> // to read the csv file
 using namespace std;
+int beginrow;
+int endrow;
 // class to store one row's information
 class DFrow
 {
@@ -302,11 +304,22 @@ void DataFrame::setColName(int col, char* name) {
 // get rows method
 // returns a data frame with a set of rLen number of rows
 DataFrame* DataFrame::getRows(int* rows, int rLen) {
-	DataFrame* returnthis = new DataFrame(rLen, nCols);
+	DataFrame* returnthis = new DataFrame(*rows, nCols);
+	int startrow = beginrow;
+	int endingrow = endrow;
 	int count = 0;
+	//cout << startrow << endl;
+	//cout << rLen << endl;
 	/*while (count < rLen) {
 		returnthis
 	}*/
+	for (int i = 0; i < *rows; i++) {
+		//returnthis->data[i] = data[startrow];
+		//startrow++;
+		data[startrow].display();
+		startrow++;
+	}
+	returnthis->display();
 	return returnthis;
 }
 
@@ -330,7 +343,8 @@ double DataFrame::findAverage(int colNumber) {
 			sum = sum + i.getAge();
 		}
 		average = sum / nRows;
-		cout << "Average of Age is " << average << endl;
+		int averageInt = floor(average);
+		cout << "Average of Age is " << averageInt << endl;
 		return average;
 	}
 	else if (name == "Height(in)") {
@@ -338,7 +352,8 @@ double DataFrame::findAverage(int colNumber) {
 			sum = sum + i.getHeight();
 		}
 		average = sum / nRows;
-		cout << "Average of Height(in) is " << average << endl;
+		int averageInt = floor(average);
+		cout << "Average of Height(in) is " << averageInt << endl;
 		return average;
 	}
 	else if (name == "Weight(lbs)") {
@@ -346,7 +361,8 @@ double DataFrame::findAverage(int colNumber) {
 			sum = sum + i.getWeight();
 		}
 		average = sum / nRows;
-		cout << "Average of Weight(lbs) is " << average << endl;
+		int averageInt = floor(average);
+		cout << "Average of Weight(lbs) is " << averageInt << endl;
 		return average;
 	}
 
@@ -461,7 +477,6 @@ int main()
 	cin >> numRows >> numCols >> headerBool >> fileName;
 	string colName;
 	string findthisname;
-	int beginrow, endrow;
 	//int colNum = 0;
 	DataFrame* d = new DataFrame(numRows, numCols);
 	d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
@@ -621,8 +636,9 @@ int main()
 			}
 			case 'R': {
 				cin >> beginrow >> endrow;
-				cout << "Call getRows for case R here" << endl;
-				d->getRows(&beginrow, (endrow - beginrow));
+				int numrows = endrow - beginrow;
+				//cout << "Call getRows for case R here" << endl;
+				d->getRows(&numrows, numCols);
 				break;
 			}
 			default: cout << "holy cow!" << endl;

@@ -125,7 +125,7 @@ void DFrow::display() {
 // destructor
 DFrow::~DFrow() {
 	name = "";
-	sex = NULL;
+	sex = (char) 0;
 	age = 0;
 	height = 0;
 	weight = 0;
@@ -343,7 +343,7 @@ double DataFrame::findAverage(int colNumber) {
 			sum = sum + i.getAge();
 		}
 		average = sum / nRows;
-		int averageInt = floor(average);
+		int averageInt = (int) average;
 		cout << "Average of Age is " << averageInt << endl;
 		return average;
 	}
@@ -352,7 +352,7 @@ double DataFrame::findAverage(int colNumber) {
 			sum = sum + i.getHeight();
 		}
 		average = sum / nRows;
-		int averageInt = floor(average);
+		int averageInt = (int) average;
 		cout << "Average of Height(in) is " << averageInt << endl;
 		return average;
 	}
@@ -361,7 +361,7 @@ double DataFrame::findAverage(int colNumber) {
 			sum = sum + i.getWeight();
 		}
 		average = sum / nRows;
-		int averageInt = floor(average);
+		int averageInt = (int) average;
 		cout << "Average of Weight(lbs) is " << averageInt << endl;
 		return average;
 	}
@@ -465,6 +465,15 @@ double DataFrame::frequency(int colNumber) {
 		return freq;
 	}
 
+}
+
+// destructor
+DataFrame:: ~DataFrame() {
+	data.reserve(100);
+	headers.reserve(100);
+	nRows = 1;
+	nCols = 1;
+	isHeader = false;
 }
 
 // main function

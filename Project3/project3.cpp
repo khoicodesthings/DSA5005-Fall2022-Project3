@@ -457,11 +457,11 @@ int main()
 	int numRows, numCols;
 	string fileName;
 	string headerBool;
-	//char command;
+	char command;
 	cin >> numRows >> numCols >> headerBool >> fileName;
 	DataFrame* d = new DataFrame(numRows, numCols);
 	d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
-	d->display();
+	/*d->display();
 	d->searchRecord("Alex");
 	d->findAverage(2);
 	d->findAverage(3);
@@ -472,7 +472,7 @@ int main()
 	d->findMin(2);
 	d->findMin(3);
 	d->findMin(4);
-	d->frequency(1);
+	d->frequency(1);*/
 	//	// TODO: read the commands from the input file (redirected input)
 	/*DFrow* test = new DFrow();
 	test->setName("Khoi");
@@ -483,6 +483,120 @@ int main()
 	test->setCity("Norman");
 
 	test->display();*/
+	cin >> command;
+	while (!cin.eof()) {
+		switch (command) {
+			case 'F': {
+				string find;
+				cin >> find;
+				d->searchRecord(find);
+			}
+			case 'D': {
+				d->display();
+			}
+			case 'A': {
+				string colName;
+				cin >> colName;
+				int colNum = 20;
+				if (colName == "Name") {
+					colNum = 0;
+				}
+				if (colName == "Sex") {
+					colNum = 1;
+				}
+				if (colName == "Age") {
+					colNum = 2;
+				}
+				if (colName == "Height(in)") {
+					colNum = 3;
+				}
+				if (colName == "Weight(lbs)") {
+					colNum = 4;
+				}
+				if (colName == "City") {
+					colNum = 5;
+				}
+				d->findAverage(colNum);
+			}
+			case 'Q': {
+				string colName;
+				cin >> colName;
+				int colNum = 20;
+				if (colName == "Name") {
+					colNum = 0;
+				}
+				if (colName == "Sex") {
+					colNum = 1;
+				}
+				if (colName == "Age") {
+					colNum = 2;
+				}
+				if (colName == "Height(in)") {
+					colNum = 3;
+				}
+				if (colName == "Weight(lbs)") {
+					colNum = 4;
+				}
+				if (colName == "City") {
+					colNum = 5;
+				}
+				d->frequency(colNum);
+			}
+			case 'X': {
+				string colName;
+				cin >> colName;
+				int colNum = 20;
+				if (colName == "Name") {
+					colNum = 0;
+				}
+				if (colName == "Sex") {
+					colNum = 1;
+				}
+				if (colName == "Age") {
+					colNum = 2;
+				}
+				if (colName == "Height(in)") {
+					colNum = 3;
+				}
+				if (colName == "Weight(lbs)") {
+					colNum = 4;
+				}
+				if (colName == "City") {
+					colNum = 5;
+				}
+				d->findMax(colNum);
+			}
+			case 'I': {
+				string colName;
+				cin >> colName;
+				int colNum = 20;
+				if (colName == "Name") {
+					colNum = 0;
+				}
+				if (colName == "Sex") {
+					colNum = 1;
+				}
+				if (colName == "Age") {
+					colNum = 2;
+				}
+				if (colName == "Height(in)") {
+					colNum = 3;
+				}
+				if (colName == "Weight(lbs)") {
+					colNum = 4;
+				}
+				if (colName == "City") {
+					colNum = 5;
+				}
+				d->findMin(colNum);
+			}
+			case 'R': {
+				cout << "Call getRows for case R here" << endl;
+			}
+			default: cout << "holy cow!" << endl;
+		}
+		cin >> command;
+	}
 
 	return 0;
 }

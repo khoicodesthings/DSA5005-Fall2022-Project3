@@ -290,10 +290,6 @@ DFrow DataFrame::searchRecord(string name) {
 			data[i].display();
 			return data[i];
 		}
-		else {
-			cout << "No such record exist!" << endl;
-			//return data[1];
-		}
 	}
 }
 
@@ -306,7 +302,7 @@ void DataFrame::setColName(int col, char* name) {
 // get rows method
 // returns a data frame with a set of rLen number of rows
 DataFrame* DataFrame::getRows(int* rows, int rLen) {
-	DataFrame* returnthis = new DataFrame();
+	DataFrame* returnthis = new DataFrame(rLen, nCols);
 	int count = 0;
 	/*while (count < rLen) {
 		returnthis
@@ -326,7 +322,7 @@ double DataFrame::findAverage(int colNumber) {
 	double sum = 0;
 	double average = 0;
 	if (name == "Name" || name == "Sex" || name == "City") {
-		cout << "Average for " << name << " cannot be found since it is nan";
+		cout << "Average for " << name << " cannot be found since it is nan" << endl;
 		return sum;
 	}
 	else if (name == "Age") {
@@ -361,7 +357,7 @@ double DataFrame::findMax(int colNumber) {
 	string name = headers[index];
 	double max = 0;
 	if (name == "Name" || name == "Sex" || name == "City") {
-		cout << "Max for " << name << " cannot be found since it is nan";
+		cout << "Max for " << name << " cannot be found since it is nan" << endl;
 		return max;
 	}
 	else if (name == "Age") {
@@ -399,7 +395,7 @@ double DataFrame::findMin(int colNumber) {
 	string name = headers[index];
 	double min = 1000;
 	if (name == "Name" || name == "Sex" || name == "City") {
-		cout << "Min for " << name << " cannot be found since it is nan";
+		cout << "Min for " << name << " cannot be found since it is nan" << endl;
 		return min;
 	}
 	else if (name == "Age") {
@@ -465,6 +461,7 @@ int main()
 	cin >> numRows >> numCols >> headerBool >> fileName;
 	string colName;
 	string findthisname;
+	int beginrow, endrow;
 	//int colNum = 0;
 	DataFrame* d = new DataFrame(numRows, numCols);
 	d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
@@ -490,6 +487,7 @@ int main()
 	test->setCity("Norman");
 
 	test->display();*/
+	
 	cin >> command;
 	while (!cin.eof()) {
 		switch (command) {
@@ -497,9 +495,11 @@ int main()
 				//string find;
 				cin >> findthisname;
 				d->searchRecord(findthisname);
+				break;
 			}
 			case 'D': {
 				d->display();
+				break;
 			}
 			case 'A': {
 				//string colName;
@@ -620,7 +620,10 @@ int main()
 				}
 			}
 			case 'R': {
+				cin >> beginrow >> endrow;
 				cout << "Call getRows for case R here" << endl;
+				d->getRows(&beginrow, (endrow - beginrow));
+				break;
 			}
 			default: cout << "holy cow!" << endl;
 		}

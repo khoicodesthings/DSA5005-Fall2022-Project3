@@ -308,7 +308,46 @@ string DataFrame::getHeader(int i) {
 	return headers[i];
 } 
 
+// returns the average of the given column
+double DataFrame::findAverage(int colNumber) {
+	int index = colNumber;
+	string name = headers[index];
+	double sum = 0;
+	double average = 0;
+	if (name == "Name" || name == "Sex" || name == "City") {
+		cout << "Average for " << name << " cannot be found since it is nan";
+		return sum;
+	}
+	else if (name == "Age") {
+		for (DFrow i : data) {
+			sum = sum + i.getAge();
+		}
+		average = sum / nRows;
+		cout << "Average for Age is " << average << endl;
+		return average;
+	}
+	else if (name == "Height(in)") {
+		for (DFrow i : data) {
+			sum = sum + i.getHeight();
+		}
+		average = sum / nRows;
+		cout << "Average for Height(in) is " << average << endl;
+		return average;
+	}
+	else if (name == "Weight(lbs)") {
+		for (DFrow i : data) {
+			sum = sum + i.getWeight();
+		}
+		average = sum / nRows;
+		cout << "Average for Weight(lbs) is " << average << endl;
+		return average;
+	}
 
+}
+
+//double findMax(int colNumber);   
+//double findMin(int colNumber);
+//double frequency(int colNumber);
 
 // main function
 int main()
@@ -322,6 +361,7 @@ int main()
 	d->readCSV(fileName, headerBool); // use this method to read in the data from the csv file
 	d->display();
 	d->searchRecord("Alex");
+	d->findAverage(2);
 	//	// TODO: read the commands from the input file (redirected input)
 	/*DFrow* test = new DFrow();
 	test->setName("Khoi");

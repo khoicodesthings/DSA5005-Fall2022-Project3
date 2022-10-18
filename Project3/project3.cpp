@@ -293,9 +293,17 @@ void DataFrame::setColName(int col, char* name) {
 }
 
 // get rows method
+// returns a data frame with a set of rLen number of rows
 DataFrame* DataFrame::getRows(int* rows, int rLen) {
-	return NULL;
+	DataFrame* returnthis = new DataFrame();
+	int count = 0;
+	/*while (count < rLen) {
+		returnthis
+	}*/
+	return returnthis;
 }
+
+
 
 
 // main function

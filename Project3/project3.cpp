@@ -497,8 +497,10 @@ double DataFrame::frequency(int colNumber) {
 
 // destructor
 DataFrame:: ~DataFrame() {
-	data.reserve(100);
-	headers.reserve(100);
+	//data.reserve(100);
+	//headers.reserve(100);
+	data.swap(data);
+	headers.swap(headers);
 	nRows = 1;
 	nCols = 1;
 	isHeader = false;

@@ -171,8 +171,8 @@ public:
 
 // Constructors
 DataFrame::DataFrame() {
-	data.reserve(100);
-	headers.reserve(100);
+	//data.reserve(100);
+	//headers.reserve(100);
 	nRows = 1;
 	nCols = 1;
 	isHeader = false;
@@ -181,8 +181,8 @@ DataFrame::DataFrame() {
 DataFrame::DataFrame(int rows, int cols) {
 	nRows = rows;
 	nCols = cols;
-	data.reserve(nRows);
-	headers.reserve(nCols);
+	//data.reserve(nRows);
+	//headers.reserve(nCols);
 	isHeader = false;
 }
 
@@ -314,9 +314,9 @@ DataFrame* DataFrame::getRows(int* rows, int rLen) {
 		returnthis
 	}*/
 	for (int i = 0; i < *rows; i++) {
-		//returnthis->data[i] = data[startrow];
+		returnthis->data.push_back(data[startrow]);
 		//startrow++;
-		data[startrow].display();
+		//data[startrow].display();
 		startrow++;
 	}
 	returnthis->display();
@@ -464,7 +464,7 @@ double DataFrame::frequency(int colNumber) {
 		cout << "F: " << freqF << endl;
 		return freq;
 	}
-	if (name == "Name") {
+	else if (name == "Name") {
 		int currentfreq;
 		for (int i = 0; i < nRows; i++) {
 			string current = data[i].getName();
@@ -478,7 +478,7 @@ double DataFrame::frequency(int colNumber) {
 		}
 		return freq;
 	}
-	if (name == "City") {
+	else if (name == "City") {
 		int currentfreq;
 		for (int i = 0; i < nRows; i++) {
 			string current = data[i].getCity();
@@ -492,6 +492,10 @@ double DataFrame::frequency(int colNumber) {
 		}
 		return freq;
 	}
+	else {
+		cout << "Cannot find frequency since this is not a categorical value" << endl;
+		return freq;
+	}
 
 }
 
@@ -499,8 +503,8 @@ double DataFrame::frequency(int colNumber) {
 DataFrame:: ~DataFrame() {
 	//data.reserve(100);
 	//headers.reserve(100);
-	vector<DFrow>().swap(data);
-	vector<string>().swap(headers);
+	//vector<DFrow>().swap(data);
+	//vector<string>().swap(headers);
 	nRows = 1;
 	nCols = 1;
 	isHeader = false;

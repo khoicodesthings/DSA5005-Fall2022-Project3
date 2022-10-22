@@ -387,6 +387,7 @@ double DataFrame::findAverage(int colNumber) {
 double DataFrame::findMax(int colNumber) {
 	int index = colNumber;
 	string name = headers[index];
+	// choose initial max to be small value
 	double max = 0;
 	if (name == "Name" || name == "Sex" || name == "City") {
 		cout << "Max for " << name << " cannot be found since it is nan" << endl;
@@ -425,6 +426,7 @@ double DataFrame::findMax(int colNumber) {
 double DataFrame::findMin(int colNumber) {
 	int index = colNumber;
 	string name = headers[index];
+	// choose initial min to be large value
 	double min = 1000;
 	if (name == "Name" || name == "Sex" || name == "City") {
 		cout << "Min for " << name << " cannot be found since it is nan" << endl;

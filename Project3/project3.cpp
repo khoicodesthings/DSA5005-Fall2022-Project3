@@ -263,7 +263,7 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 			thisrow->setHeight(height);
 			thisrow->setWeight(weight);
 			thisrow->setCity(city);
-			// psuh back to data vector
+			// push back to data vector
 			data.push_back(*thisrow);
 			
 

@@ -8,6 +8,8 @@
 #include <vector>  // to store data
 #include <fstream> // to read the csv file
 using namespace std;
+
+// global variables to access for getRows method in DataFrame class
 int beginrow;
 int endrow;
 // class to store one row's information
@@ -46,9 +48,10 @@ public:
 };
 
 // default constructor
+// initialize everything to default values
 DFrow:: DFrow() {
 	name = "";
-	sex = NULL;
+	sex = (char) 0;
 	age = 0;
 	height = 0;
 	weight = 0;
@@ -56,6 +59,7 @@ DFrow:: DFrow() {
 }
 
 // non-default constructor
+// initialize everything to given parameters
 DFrow::DFrow(string n, char c, int one, int two, int three, string ci) {
 	name = n;
 	sex = c;
@@ -123,6 +127,7 @@ void DFrow::display() {
 }
 
 // destructor
+// reset everything back to default values
 DFrow::~DFrow() {
 	name = "";
 	sex = (char) 0;
@@ -138,7 +143,7 @@ protected:
 	vector<DFrow> data; // field storeing all the data
 	vector<string> headers; // field to only the headers
 	int nRows, nCols; // store the number of rows and cols
-	bool isHeader;
+	bool isHeader; // added boolean var to indicate header presence
 public:
 	// Constructors
 	DataFrame();
@@ -170,23 +175,26 @@ public:
 };
 
 // Constructors
+
+// default constructor
+// no need to initialize vectors
+// initalize rows and cols to 1
+// initialize header boolean to false
 DataFrame::DataFrame() {
-	//data.reserve(100);
-	//headers.reserve(100);
 	nRows = 1;
 	nCols = 1;
 	isHeader = false;
 }
 
+// initialize to given parameters
 DataFrame::DataFrame(int rows, int cols) {
 	nRows = rows;
 	nCols = cols;
-	//data.reserve(nRows);
-	//headers.reserve(nCols);
 	isHeader = false;
 }
 
 // Overloaded [] operator
+// Let main access ith value of data vector
 DFrow DataFrame::operator[](int i) {
 	return data[i];
 }
@@ -201,10 +209,12 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 		isHeader = true;
 	}
 	if (myFile.is_open()) { // start adding to data vector if file is opened successfully
-		// cout << "File opened success!" << endl;
 		// Code to add content of csv file to the 2 vectors
 		if (isHeader = true) {
+			// 6 string var for 6 variables for each header column
 			string headerline1, headerline2, headerline3, headerline4, headerline5, headerline6;
+			// read in each variable, use ',' as delimiter; the last variable is separated by a newline, so
+			// no need for ',' delimiter
 			getline(myFile, headerline1, ',');
 			headers.push_back(headerline1);
 			getline(myFile, headerline2, ',');
@@ -218,6 +228,8 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 			getline(myFile, headerline6);
 			headers.push_back(headerline6);
 		}
+
+		// variables for DFrow
 		string name;
 		char sex; // index [0] of string will give the char
 		int age; // use stoi function to convert string to int
@@ -226,14 +238,16 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 		string city;
 		string nextline1;
 		while (getline(myFile, nextline1, ',')) {
+			// 6 string variable for each element in DFrow
 			string nextline2, nextline3, nextline4, nextline5, nextline6;
-
+			// read them in, use ',' as delimiter
 			getline(myFile, nextline2, ',');
 			getline(myFile, nextline3, ',');
 			getline(myFile, nextline4, ',');
 			getline(myFile, nextline5, ',');
 			getline(myFile, nextline6);
 
+			// assign each line to the element, converting as neccessary
 			name = nextline1;
 			sex = nextline2[0];
 			age = stoi(nextline3);
@@ -241,6 +255,7 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 			weight = stoi(nextline5);
 			city = nextline6;
 
+			// create temp DFrow object and set the fields
 			DFrow* thisrow = new DFrow();
 			thisrow->setName(name);
 			thisrow->setSex(sex);
@@ -248,11 +263,12 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 			thisrow->setHeight(height);
 			thisrow->setWeight(weight);
 			thisrow->setCity(city);
-			//thisrow->display();
+			// psuh back to data vector
 			data.push_back(*thisrow);
 			
 
 		}
+		// close the file
 		myFile.close();
 	}
 	else {
@@ -263,12 +279,13 @@ void DataFrame::readCSV(string filename, string headerpresence) {
 
 // display
 void DataFrame::display() {
-	if (isHeader == true) {
+	if (isHeader == true) { // only display header if it exists
 		for (string i : headers) {
 			cout << " " << i << " ";
 		}
 		cout << endl;
 	}
+	// use DFrow display to display each row
 	for (DFrow i : data) {
 		i.display();
 	}
@@ -285,8 +302,10 @@ int DataFrame::getNumberRows() {
 
 // search record method
 DFrow DataFrame::searchRecord(string name) {
+	// loop through data vector
 	for (int i = 0; i < nRows; i++) {
 		string findthis = data[i].getName();
+		// print the row if it matches the name
 		if (findthis == name) {
 			cout << "Record found:" << endl;
 			data[i].display();
@@ -304,21 +323,18 @@ void DataFrame::setColName(int col, char* name) {
 // get rows method
 // returns a data frame with a set of rLen number of rows
 DataFrame* DataFrame::getRows(int* rows, int rLen) {
+	// Create new DataFrame object
 	DataFrame* returnthis = new DataFrame(*rows, nCols);
 	int startrow = beginrow;
 	int endingrow = endrow;
-	int count = 0;
-	//cout << startrow << endl;
-	//cout << rLen << endl;
-	/*while (count < rLen) {
-		returnthis
-	}*/
+
+	// Run the loop with rows
 	for (int i = 0; i < *rows; i++) {
+		// add data to new DataFrame
 		returnthis->data.push_back(data[startrow]);
-		//startrow++;
-		//data[startrow].display();
 		startrow++;
 	}
+	// Print out DataFrame
 	returnthis->display();
 	return returnthis;
 }
@@ -501,10 +517,6 @@ double DataFrame::frequency(int colNumber) {
 
 // destructor
 DataFrame:: ~DataFrame() {
-	//data.reserve(100);
-	//headers.reserve(100);
-	//vector<DFrow>().swap(data);
-	//vector<string>().swap(headers);
 	nRows = 1;
 	nCols = 1;
 	isHeader = false;
